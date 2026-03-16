@@ -1,0 +1,339 @@
+# Conceitos #
+
+Web Services:
+
+    - Web Service é uma solução tecnológica utilizada para a integração de sistemas e comunicação entre aplicações diferentes, 
+    independentemente das plataformas, linguagens de programação ou sistemas operacionais utilizados.  Essencialmente, permite 
+    que recursos de software estejam disponíveis na rede de forma normalizada, facilitando a interoperabilidade entre máquinas.
+
+Interoperabilidade:
+
+    - Em termos simples, a interoperabilidade refere-se à capacidade de sistemas diversos se conectarem, compartilhando informações 
+    de maneira eficiente e segura.
+
+CRUD:
+
+    - CRUD como é comumente usado é a abreviação de Criar, Ler, Atualizar e Deletar - termos que são usados em conjunto com bancos de dados.
+    Então, a menos que você tenha esquecido de elaborar algo, é principalmente um trabalho relacionado ao armazenamento, recuperação e manutenção de dados.
+
+# REST é baseado em um conjunto de constraints # 
+
+1. Cliente-servidor
+
+    - Cliente e servidores separados.
+
+2. Stateless server 
+
+    - O servidor não deve guardar o estado do cliente.
+    - Cada resquest de um cliente contém todas as informações necessárias para atendê-la.
+
+3. Cacheable
+
+    - O cliente deve ser informado sobre as propriedades de cache de um recurso para que possa decidir quando
+deve ou não utilizar cache.
+
+4. Interface uniforme
+
+    - Identificação de Recursos (URI)
+    - Manipulação de recursos a partir de suas representações.
+    - Mensagens auto descritivas
+    - Hypermedia as the engine of application state - HATEOAS
+
+5. Sistema em Camadas
+
+    - Deve suportar conceitos como balanceamento de carga, proxies e firewall.
+
+6. Código sob Demanda (Opcional)
+
+    - O cliente pode solicitar o código do servidor.
+
+
+
+# Formatos ou *Mime Types* suportados pelo REST #
+
+    -XML    -PDF
+    -JSON   -Binário
+    -CSV    -Etc.
+    -Texto
+    -Imagens
+    -HTML
+
+
+
+# Vantagens do Web Service RESTful #
+
+    - REST é um padrão arquitetural basicamente leve por natureza. Então Quando você tiver 
+    Limitações de banda prefira web services REST;
+
+    - Desenvolvimento fácil e rápido;
+
+    - Aplicativos Mobile tem ganhado cada vez mais espaço e precisam interagir rapidamente
+    com os servidores e o padrão REST é mais rápido no processamento de dados da request e
+    response.
+
+# Request e Response #
+
+    >>>>>>>>>>
+    Requisição X Resposta
+                <<<<<<<<<
+    A requisição é feita para as API's para receber alguma resposta de dados
+
+
+# Path Params e Query Params #
+
+Path Params
+
+    - parâmetro obrigatório 
+
+ --> asc/10/1 <--
+
+Query Params
+
+    - parâmetro opcional (geralemente utilizado em consulta).
+
+ --> firstName=Leo&lastName=silva <--
+                  ^
+                  |
+                  |
+            Caso queira passar
+            outro parâmetro é
+            utilizado o *&*
+
+    O parâmetro precisa vir ate o após o caminho
+
+# Header e Body Params #
+
+Header params
+
+    - Envio do tipo te conteúdo e utilizado para passar o accessToken
+
+Body Params
+
+    - Utilizado para cadastrar novos usuários ou atualizar.
+
+
+# HTTP Status Codes #
+
+Principais:
+    - 200 Resultado OK
+    - 400 Erro no client
+    - 500 Erro no servidor
+
+Casas de Status Codes
+    1XX -> Informacionais
+    2XX -> Sucesso
+    3XX -> Redirecionamento
+    4XX -> Erro de client
+    5XX -> Erro de server
+
+2XX Sucesso
+
+    - 200 OK *Mais utilizado*
+    - 201 Created
+    - 202 Accepted *Mais utilizado*
+    - 203 Non-authoritative Information
+    - 204 No Content *Mais utilizado*
+    - 205 Reset Content
+    - 206 Partial Content
+    - 207 Multi-Status
+    - 208 Already Reported
+    - 226 IM Used
+
+3XX Redirecionamento
+
+    - 300 Multiple Choices 
+    - 301 Moved Permanently *Mais utilizado*
+    - 302 Found
+    - 303 See Other
+    - 304 Not Modified
+    - 305 Use Proxy
+    - 307 Temporary Redirect
+    - 308 Permanent Redirect
+
+4XX Erro de client
+
+    - 400 Bad Request
+    - 401 Unauthorized
+    - 403 Forbidden
+    - 404 Not Found
+    - 415 Unsupported Media Type
+
+5XX Erro do Servidor
+
+    - 500 Internal Server Error
+    - 501 Not Implemented
+    - 502 Bad Gateway
+    - 503 Service unavailable
+    - 504 Gateway Timeout
+
+# Status Codes em Serviços REST #
+
+    - 200 OK -> Request de criação ou deleção executada com Sucesso
+    - 201 Created (Cria) -> Criação de uma fila, tópico, fila temporária, 
+    tópico temporária, session, producerm consumer, listener, queue 
+    browser ou mensagem realizada com sucesso.
+    - 204 No Content (Deleta) -> Deleção de uma fila, tópico, sessão, producer 
+    ou listener bem sucedida mas sem retorno de conteúdo.
+
+    - 400 Bad Request -> O path informado está em um formato incorreto, um parâmetro
+    ou valor do corpo da requisição não está formatado corretamente ou um parâmetro obrigatório
+    não foi informado, ou está formatado corretamente mas pode estar eventualmente infálido(por exemplo 
+    , o ID informado não existe - NullPointerException, o conteúdo retornado é muito grande ou o ID informado 
+    já está em um uso).
+    - 401 Unauthorized -> O cliente nã tem autorização para executar requisições na operação em questão.
+    - 403 Forbidden -> o cliente não tem permissão para executar requisições na operação em questão.
+    - 404 Not Found -> O objeto requisitado pelo path não existe.
+    - 405 Method Not Allowed -> O usuário não tem permissão de acesso ao path.
+    - 409 Conflict -> Foi feita uma tentativa de criar um objeto que ja existe.
+
+    - 500 Internal Erro de Server - > Ocorreu um erro no servidor, que pode ter sido causado, por exemplo, por uma
+    falha SQL.
+
+# Verbos HTTP e o REST #
+
+HTTP POST -> Criar novos recursos (corpo Request + requisição)
+
+    - Usado para criar ou inserir um novo item na base.
+    - Retorno de status code 200 ou 201.
+
+    Parâmetro suportados
+
+    - Via URL (PATH ou QUERY PARAMS)
+    - Via HEADER
+    - Via Body
+
+
+HTTP GET -> Ler com uma requisição por meio da URL (request)
+
+    - O verbo HTTP GET é usado para ler ou recuperar uma representação de um recurso
+
+    Parâmetro suportados
+
+    - Via URL (PATH ou QUERY PARAMS)
+    - Via HEADER
+
+HTTP PUT ou PATCH -> 
+
+    - O Verbo PUT é comumente usado para atualizar informações,
+    coloando um recurso conhecido no (body) corpo da requisição 
+    contendo novas informações que representam o recurso original.
+    - Status code retornado 200 (ou 204 quando não retorna nenhum conteúdo no body).
+
+    Parâmetro suportados
+
+    - Via URL (PATH ou QUERY PARAMS)
+    - Via HEADER
+    - Via Body
+
+HTTP DELETE -> Deletar recurso
+
+    - O verbo DELETE é fácil de entender, ele é usado para deletar um recurso identificado por uma URL.
+
+    Parâmetro suportados
+
+    - Via URL (PATH ou QUERY PARAMS)
+    - Via HEADER
+    - Via Body
+
+
+# Outros verbos menos conhecidos #
+
+PATCH - o verbo PATCH pode ser usado para realizar updates parciais de um recurso. Por exemplo, quando 
+você precisar alterar apenas um campo em um recurso, executar um PUT com todo o obejto é pesado e acarreta
+em um maior consumo de banda.
+
+- use-o com moderação pois colisões entre múltiplas PATCH requests são mais perigosas que colisões entre PUT requests por que exige 
+que o cliente tenha informações básicas do recurso ou irão corrompê-los
+
+HEAD - o verbo HEAD possui uma funcionalidade similar ao verbo GET, exceto pelo fato do servidor retornar uma response line.
+
+TRACE - o verbo TRACE é usado para recuperar conteúdo de uma requisição HTTP de volta.
+
+OPTIONS - o verbo OPTIONS é usado pelo cliente para encontrar operações HTTP e outras opções suportadas pelo servidor. O cliente pode especificar uma URL
+para o verbo OPTIONS ou asterisco para se referir a todo o servidor
+
+CONNECT - o verbo CONNECT é usado pelo cliente para estabelecer uma conexão de rede com um servidor via HTTP
+
+# Níveis de maturidade de Richardson #
+
+    Modelo de maturidade de Richardson
+
+                    level 4: RESTful
+                level 3: HATEOAS
+            level 2: HTTP Verbs
+        level 1: Resources -> Recursos organizados
+    level 0: The Swamp of POX
+
+
+# HATEOAS - Hypermedia As The Engine Of Application State #
+
+    - HATEOAS (Hypermedia as the Engine of Application State) é uma restrição arquitetural 
+    dentro do contexto de aplicações REST.
+
+    - Trata-se de uma característica que permite que uma API forneça informações que ajudam 
+    os clientes a navegar dinamicamente entre seus endpoints. Isso ocorre porque as respostas 
+    das APIs HATEOAS incluem links que apontam para outros recursos relacionados, o que diferencia 
+    este padrão de outras abordagens como os sistemas baseados em SOA e em interfaces definidas por WSDL.
+
+
+# Versionamento de API's #
+
+    -> Versionamento por Subdomínio
+        https://v1.localhost:9231/api/person/1
+                ^
+                |
+    -> Versionamento por Path Param (Recomendado)
+        {{baseUrl}} /api/person/v1/1
+                                ^
+                                |
+    -> Versionamento por Query Param
+        {{baseUrl}} /api/person/1?Version=1.0
+                                     ^
+                                     |
+    -> Versionamento por Header Param
+        (Com Accept)
+
+    -> Versionamento por Custom Header Param
+        api-version = 1
+
+
+# Além do RESTful #
+
+    -> Limite de requisições e acessos
+            limite de requisições na API
+    -> SDK's e samples apps
+            exemplos de aplicações e bibliotecas 
+    -> Referência Rápida
+            guia de referência para usuário
+
+
+# Boas Práticas #
+
+    -> Paginação
+    -> Filtros
+    -> Definir recursos lógicos
+    -> Tolerância e falhas
+    -> Cache
+    -> Conectividade
+        -> Timeouts
+    -> Documentação
+    -> Utilizar SSL
+    -> Versionamento
+    -> Teste e validação
+    -> API Self-Service
+    -> Divulgação (Caso for vender)
+    -> Promover exportações
+    -> I18n / Globalization
+    -> Notificações ao usuário
+    -> Limite de campos
+    -> Monitore sua API
+    -> Selecione a Tecnologia Adequada
+
+
+
+
+# Frequência diaria #
+
+ Onde parei:
+    -> Instalação e preparação do ambiente de desenvolvimento
+    -> Repositório do GitHub
